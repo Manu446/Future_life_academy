@@ -2,105 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
   <title>Future Life Academy — Shaping Leaders of Tomorrow</title>
   <meta name="description" content="Future Life Academy: faith-based, CBC-aligned primary school on Siaya-Luanda Road. Academic excellence, values, co-curriculars and a caring community." />
-  <meta property="og:title" content="Future Life Academy" />
-  <meta property="og:description" content="Shaping Leaders of Tomorrow — Enroll today." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="pics/logo.jpg" />
-  <link rel="icon" href="pics/logo.jpg" />
+  <link rel="icon" href="pics/logo-removebg.png" />
 
   <!-- Fonts & icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Optional: GSAP for subtle entrance animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
   <style>
     :root{
       --primary:#32cd32;
+      --deep:#006400;
       --dark:#0f1720;
       --muted:#6b7280;
       --bg:#f4f7f9;
-      --glass: rgba(17,24,39,0.65);
-      --card-shadow: 0 8px 28px rgba(15,23,32,0.08);
+      --card-shadow:0 8px 28px rgba(15,23,32,0.08);
     }
 
-    /* Reset & base */
-    *{box-sizing:border-box}
+    /* Base / Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
-      margin:0;
-      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial;
       background:var(--bg);
       color:#12202b;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      -webkit-tap-highlight-color: transparent;
     }
+    a{color:inherit}
+    img{max-width:100%;height:auto;display:block}
 
-    /* NAVBAR */
+    /* NAVBAR (uniform with your site) */
     .navbar{
-      position:sticky;
-      top:0;
-      z-index:999;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:18px 1rem;
-      backdrop-filter:blur(6px);
+      position:sticky;top:0;z-index:999;display:flex;align-items:center;justify-content:center;
+      padding:18px 1rem;backdrop-filter:blur(6px);
       background:linear-gradient(180deg, rgba(15,23,32,0.45), rgba(15,23,32,0.35));
-      transition:padding 220ms ease, box-shadow 220ms ease, background 220ms ease;
+      transition:padding .22s ease, box-shadow .22s ease, background .22s ease;
     }
-    .navbar.shrink{ padding:10px 1rem; box-shadow:0 6px 22px rgba(2,6,23,0.3); background:var(--glass); }
+    .navbar.shrink{ padding:10px 1rem; box-shadow:0 6px 22px rgba(2,6,23,0.25); background: rgba(11,11,11,0.85); }
     .nav-inner{ width:1200px; max-width:94%; display:flex; align-items:center; gap:1rem; }
     .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; color:#fff; }
-    .brand img{ width:44px; height:44px; border-radius:8px; object-fit:cover; }
-    .brand .title{ font-weight:700; letter-spacing:.2px; color:white; }
-    nav .links{ margin-left:auto; display:flex; gap:.25rem; align-items:center; }
-    .nav-link{ color:#e9eef2; text-decoration:none; padding:.45rem .9rem; border-radius:8px; font-weight:600; font-size:.95rem;}
-    .nav-link:hover{ background:rgba(255,255,255,0.04); color:var(--primary); transform:translateY(-2px) }
-    .cta-btn{ background:var(--primary); color:#042018; padding:.45rem .95rem; border-radius:999px; font-weight:700; border:none; cursor:pointer; box-shadow:0 6px 18px rgba(50,205,50,0.12) }
-    .cta-btn:hover{ filter:brightness(.95); transform:translateY(-2px) }
+    .brand img{ width:46px; height:46px; border-radius:8px; object-fit:cover; }
+    .brand .title{ font-weight:700; color:white; letter-spacing:.2px; }
+    .links{ margin-left:auto; display:flex; gap:.35rem; align-items:center; flex-wrap:wrap; }
+    .nav-link{ color:#e9eef2; text-decoration:none; padding:.45rem .9rem; border-radius:8px; font-weight:600; font-size:.95rem; }
+    .nav-link:hover{ background:rgba(255,255,255,0.04); color:var(--primary); transform:translateY(-2px); }
+    .cta-btn{ background:var(--primary); color:#062014; padding:.45rem .95rem; border-radius:999px; font-weight:700; border:none; cursor:pointer; box-shadow:0 6px 18px rgba(50,205,50,0.12) }
+    .cta-btn:active{ transform:translateY(0) }
 
-    /* HERO */
+    /* HERO (keeps your look) */
     .hero{
-      height:88vh;
-      min-height:520px;
-      display:grid;
-      place-items:center;
-      position:relative;
-      background-image:url("pics/nj.jpg");
-      background-size:cover;
-      background-position:center;
+      height:88vh; min-height:520px; display:grid; place-items:center; position:relative;
+      background-image:url('pics/nj.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat;
+      color:white; text-align:center;
+      /* use fixed only on desktop; will be overridden on small screens */
       background-attachment:fixed;
-      color:white;
-      text-align:center;
+      overflow:hidden;
     }
-    .hero::before{
-      content:"";
-      position:absolute;inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.65));
-    }
+    .hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.65)); }
     .hero-inner{ position:relative; z-index:2; max-width:980px; padding:2rem; }
-    .eyebrow{ color: #cfeee0; font-weight:600; letter-spacing:1px; margin-bottom:.6rem; display:inline-block; background: rgba(255,255,255,0.04); padding:.2rem .6rem; border-radius:999px }
-    h1.hero-title{ font-size: clamp(2.1rem,4.5vw,3.2rem); margin:0 0 .8rem; line-height:1.02; font-weight:700; text-shadow:0 20px 40px rgba(0,0,0,0.45)}
-    p.hero-lead{ margin:0 auto 1.4rem; max-width:760px; color: #e6f8ec; font-size:1.05rem }
-    .hero-ctas{ display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap }
+    .eyebrow{ color:#cfeee0; font-weight:600; letter-spacing:1px; margin-bottom:.6rem; display:inline-block; background: rgba(255,255,255,0.04); padding:.2rem .6rem; border-radius:999px; }
+    .hero-title{ font-size: clamp(2.1rem,4.5vw,3.2rem); margin:0 0 .8rem; line-height:1.02; font-weight:700; text-shadow:0 20px 40px rgba(0,0,0,0.45); }
+    .hero-lead{ margin:0 auto 1.4rem; max-width:760px; color:#e6f8ec; font-size:1.05rem; }
+    .hero-ctas{ display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; }
 
-    /* MAIN CARD CONTAINER (overlapping hero) */
+    /* MAIN: overlapping white card */
     .main-card{
       max-width:1200px; margin:-4rem auto 2rem; padding:1.5rem; background:#fff; border-radius:18px; box-shadow:var(--card-shadow);
       display:grid; gap:1.25rem; grid-template-columns: 1fr;
     }
     @media(min-width:900px){ .main-card{ grid-template-columns: 2fr 1fr; } }
 
-    /* QUICK STATS */
-    .stats{ display:flex; gap:1rem; align-items:stretch; }
-    .stat{ flex:1; background:linear-gradient(180deg,#fff,#f7fbf8); border-radius:12px; padding:1rem 1.2rem; text-align:center; box-shadow:0 6px 20px rgba(2,6,23,0.04) }
+    /* Stats and features */
+    .stats{ display:flex; gap:1rem; align-items:stretch; flex-wrap:wrap; }
+    .stat{ flex:1; background:linear-gradient(180deg,#fff,#f7fbf8); border-radius:12px; padding:1rem 1.2rem; text-align:center; box-shadow:0 6px 18px rgba(2,6,23,0.04) }
     .stat .num{ font-size:1.8rem; font-weight:800; color:var(--primary) }
     .stat .label{ color:var(--muted); font-weight:600; font-size:.92rem; margin-top:.35rem }
 
-    /* FEATURES */
-    .features{ display:grid; gap:1rem; grid-template-columns:repeat(1,1fr) }
+    .features{ display:grid; gap:1rem; margin-top:1rem; }
     @media(min-width:700px){ .features{ grid-template-columns:repeat(2,1fr) } }
     .feature-card{ background:white; border-radius:12px; padding:1.15rem; display:flex; gap:1rem; align-items:flex-start; box-shadow:0 8px 30px rgba(2,6,23,0.04); transition:transform .35s ease }
     .feature-card:hover{ transform:translateY(-6px) }
@@ -108,55 +94,69 @@
     .feature-card h3{ margin:.1rem 0 .25rem; font-size:1.05rem }
     .feature-card p{ color:var(--muted); margin:0; font-size:.95rem }
 
-    /* VALUES grid */
     .values-grid{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); margin-top:1rem }
     .value-pill{ background:linear-gradient(180deg,#fff,#f3fff3); border-radius:12px; padding:1rem; text-align:center; box-shadow:0 6px 18px rgba(2,6,23,0.04) }
     .value-pill h4{ color:var(--primary); margin:.25rem 0; font-size:1.02rem; font-weight:700 }
     .value-pill p{ margin:0;color:var(--muted); font-size:.9rem }
 
-    /* Testimonials */
-    .testimonials{ padding:2rem 1rem; background:linear-gradient(180deg,#fff,#f9fff9); border-radius:12px; margin-top:1.25rem }
-    .testimonial{ display:none; gap:1rem; align-items:center; }
+    /* Testimonials / gallery */
+    .testimonials{ padding:2rem 1rem; background:linear-gradient(180deg,#fff,#f7fff7); border-radius:12px; margin-top:1.25rem; box-shadow:var(--card-shadow) }
+    .testimonial{ display:none; gap:1rem; align-items:center }
     .testimonial.active{ display:flex }
     .testimonial img{ width:70px; height:70px; border-radius:50%; object-fit:cover; box-shadow:0 8px 20px rgba(2,6,23,0.06) }
     .testimonial .quote{ font-style:italic; color:#133; margin:0 }
     .testimonial .who{ margin-top:.55rem; color:var(--muted); font-weight:600; font-size:.92rem }
 
-    /* Gallery */
-    .gallery{ display:grid; gap:.5rem; grid-template-columns:repeat(3,1fr) }
+    .gallery{ display:grid; gap:.5rem; grid-template-columns:repeat(3,1fr); margin-top:1rem }
     .gallery img{ width:100%; height:120px; object-fit:cover; display:block; border-radius:8px; cursor:pointer; transition:transform .25s }
     .gallery img:hover{ transform:scale(1.03) }
 
-    /* Footer */
-    footer.site-footer{ margin-top:2.5rem; padding:2.5rem 1rem; background:#071014; color:#d7f9e4; text-align:center }
-    .socials a{ color:var(--primary); margin:0 .45rem; font-size:1.15rem }
-
-    /* Back to top */
+    /* Footer & small helpers */
+    footer{ margin-top:2.5rem; padding:2.5rem 1rem; background:#071014; color:#d7f9e4; text-align:center }
+    footer .socials a{ color:var(--primary); margin:0 .45rem; font-size:1.15rem }
     #backToTop{ position:fixed; right:18px; bottom:18px; width:46px; height:46px; border-radius:50%; background:var(--primary); color:#062014; display:grid; place-items:center; border:none; box-shadow:0 8px 20px rgba(2,6,23,0.2); cursor:pointer; transform:translateY(12px); opacity:0; transition:opacity .28s, transform .28s }
     #backToTop.show{ opacity:1; transform:translateY(0) }
 
-    /* Reveal animations (start state) */
-    .reveal{ opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s ease }
+    /* Reveal animation start */
+    .reveal{ opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s ease; }
     .reveal.revealed{ opacity:1; transform:translateY(0) }
 
-    /* small screens tweaks */
-    @media(max-width:600px){
-      .hero{ background-attachment:scroll } /* better perf on mobile */
-      .gallery{ grid-template-columns:repeat(2,1fr) }
-      .hero-inner{ padding:1rem }
+    /* Mobile & Tablet optimizations */
+    @media (max-width: 1024px) {
+      .nav-inner { max-width: 96%; }
+      .hero { background-attachment: scroll; height:75vh; min-height:420px; }
+      .main-card { margin:-3rem 1rem 2rem; padding:1rem; border-radius:12px; }
+      .gallery img { height:100px; }
+    }
+    @media (max-width: 768px) {
+      .nav-link, .cta-btn { font-size:0.9rem; padding:.35rem .65rem; }
+      .features, .values-grid { grid-template-columns: 1fr; }
+      .stats { flex-direction: column; gap:.8rem; }
+      .hero-title { font-size:1.8rem; }
+      .hero-lead { font-size:.95rem; padding:0 .6rem; }
+      .gallery img { aspect-ratio: 4/3; height:auto; }
+    }
+    @media (max-width:480px) {
+      .nav-inner { flex-direction:column; gap:.6rem; align-items:flex-start; }
+      .links { width:100%; display:flex; flex-wrap:wrap; gap:.35rem; }
+      .brand .title{ font-size:0.95rem; }
+      .hero { height: 60vh; }
+      .hero-title { font-size:1.5rem; }
+      #backToTop { width:40px; height:40px; right:12px; bottom:12px; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <header class="navbar" role="banner" id="siteNav">
+  <header class="navbar" id="siteNav" role="banner">
     <div class="nav-inner">
-      <a class="brand" href="#">
+      <a class="brand" href="index.html" aria-label="Future Life Academy home">
         <img src="pics/logo-removebg.png" alt="Future Life Academy logo" loading="lazy">
         <span class="title">Future Life Academy</span>
       </a>
-      <nav class="links" aria-label="Primary navigation">
+
+      <nav class="links" aria-label="Main navigation">
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="A. academics.html">Academics</a>
         <a class="nav-link" href="A. admissions.html">Admissions</a>
@@ -168,39 +168,29 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero" role="region" aria-label="Welcome">
-    <div class="hero-inner" aria-hidden="false">
+  <section class="hero" role="region" aria-label="Campus hero">
+    <div class="hero-inner">
       <span class="eyebrow">Siaya • Junior School</span>
       <h1 class="hero-title">Shaping Leaders of Tomorrow — Today</h1>
       <p class="hero-lead">Faith-based education | CBC curriculum | Academic excellence and character formation in a caring community.</p>
       <div class="hero-ctas">
         <a class="cta-btn" href="#about">Learn More</a>
-        <a class="nav-link" href="A. admissions.html" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12);">Admissions</a>
+        <a class="nav-link" href="A. admissions.html" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff">Admissions</a>
       </div>
     </div>
   </section>
 
-  <!-- OVERLAPPING CARD -->
-  <section class="main-card reveal" id="about">
+  <!-- MAIN CARD (overlaps hero) -->
+  <section class="main-card reveal" id="about" aria-labelledby="about-heading">
     <div>
-      <!-- Quick stats and features -->
       <div class="stats" aria-hidden="false">
-        <div class="stat">
-          <div class="num" data-target="520">0</div>
-          <div class="label">Enrolled Students</div>
-        </div>
-        <div class="stat">
-          <div class="num" data-target="35">0</div>
-          <div class="label">Experienced Staff</div>
-        </div>
-        <div class="stat">
-          <div class="num" data-target="12">0</div>
-          <div class="label">Years of Service</div>
-        </div>
+        <div class="stat"><div class="num" data-target="520">0</div><div class="label">Enrolled Students</div></div>
+        <div class="stat"><div class="num" data-target="35">0</div><div class="label">Experienced Staff</div></div>
+        <div class="stat"><div class="num" data-target="12">0</div><div class="label">Years of Service</div></div>
       </div>
 
-      <div class="features" style="margin-top:1rem">
-        <article class="feature-card reveal">
+      <div class="features" role="list" aria-label="Key features">
+        <article class="feature-card reveal" role="listitem">
           <i class="fa-solid fa-school"></i>
           <div>
             <h3>Modern Facilities</h3>
@@ -208,7 +198,7 @@
           </div>
         </article>
 
-        <article class="feature-card reveal">
+        <article class="feature-card reveal" role="listitem">
           <i class="fa-solid fa-heart"></i>
           <div>
             <h3>Values-Based</h3>
@@ -216,7 +206,7 @@
           </div>
         </article>
 
-        <article class="feature-card reveal">
+        <article class="feature-card reveal" role="listitem">
           <i class="fa-solid fa-users"></i>
           <div>
             <h3>Co-Curricular Excellence</h3>
@@ -224,17 +214,16 @@
           </div>
         </article>
 
-        <article class="feature-card reveal">
+        <article class="feature-card reveal" role="listitem">
           <i class="fa-solid fa-graduation-cap"></i>
           <div>
             <h3>CBC Aligned Curriculum</h3>
-            <p>Discover-based learning prepares students for critical thinking and life skills.</p>
+            <p>Discovery-based learning prepares students for critical thinking and life skills.</p>
           </div>
         </article>
       </div>
     </div>
 
-    <!-- Sidebar Contact & Values -->
     <aside style="padding:1rem" aria-labelledby="quickContact">
       <div style="background:#f7fff7;padding:1rem;border-radius:12px;">
         <h3 id="quickContact">Quick Contact</h3>
@@ -258,9 +247,9 @@
     </aside>
   </section>
 
-  <!-- SCHOOL LIFE : testimonials + gallery -->
+  <!-- Testimonials & Gallery -->
   <main style="max-width:1200px;margin:1.25rem auto;padding:0 1rem">
-    <section id="school-life" class="testimonials reveal" aria-label="Testimonials">
+    <section class="testimonials reveal" aria-label="Testimonials">
       <h2 style="margin:0 0 1rem">What Parents & Students Say</h2>
       <div id="testimonialWrap">
         <div class="testimonial active">
@@ -291,7 +280,7 @@
       </div>
     </section>
 
-    <section class="reveal" aria-label="Gallery" style="margin-top:1.25rem">
+    <section class="reveal" style="margin-top:1.25rem" aria-label="Gallery">
       <h2>Gallery</h2>
       <p style="color:var(--muted);margin-top:.25rem">Click an image to enlarge.</p>
       <div class="gallery" id="gallery">
@@ -300,18 +289,18 @@
         <img src="pics/gallery3.jpg" alt="Art session" loading="lazy" data-full="pics/gallery3-large.jpg">
         <img src="pics/gallery4.jpg" alt="Library time" loading="lazy" data-full="pics/gallery4-large.jpg">
         <img src="pics/bus.JPG" alt="School bus" loading="lazy" data-full="pics/gallery5-large.jpg">
-        <img src="pics/class.JPG" alt="Graduation" loading="lazy" data-full="pics/gallery6-large.jpg">
+        <img src="pics/class.JPG" alt="Class session" loading="lazy" data-full="pics/gallery6-large.jpg">
       </div>
     </section>
   </main>
 
-  <!-- Lightbox modal -->
+  <!-- Lightbox -->
   <div id="lightbox" role="dialog" aria-hidden="true" style="position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.7);z-index:1200">
     <button id="lbClose" aria-label="Close" style="position:absolute;right:18px;top:18px;background:transparent;border:none;color:#fff;font-size:24px;cursor:pointer"><i class="fa-solid fa-xmark"></i></button>
     <img id="lbImg" src="" alt="" style="max-width:92%;max-height:84%;border-radius:8px;box-shadow:0 20px 60px rgba(2,6,23,0.6)">
   </div>
 
-  <!-- CTA & Footer -->
+  <!-- Footer -->
   <footer class="site-footer" role="contentinfo">
     <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:.9rem;align-items:center">
       <div style="display:flex;gap:1.1rem;align-items:center">
@@ -330,7 +319,7 @@
   <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
   <script>
-    /* --------- Shrink navbar on scroll & Back-to-top --------- */
+    /* Navbar shrink & back-to-top */
     const nav = document.getElementById('siteNav');
     const backBtn = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
@@ -339,78 +328,70 @@
     });
     backBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
 
-    /* --------- Intersection Observer reveal (performant) --------- */
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); }
+    /* Intersection reveal (performant) */
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          obs.unobserve(entry.target);
+        }
       });
-    }, {threshold:0.18});
+    }, {threshold: 0.18});
     document.querySelectorAll('.reveal, .feature-card, .value-pill, .testimonial, .gallery img').forEach(el => io.observe(el));
 
-    /* --------- Animated counters --------- */
+    /* Animated counters */
     function animateCounter(el, target){
       const start = 0;
-      const duration = 1600;
+      const duration = 1400;
       let startTime = null;
       function step(ts){
         if (!startTime) startTime = ts;
-        const progress = Math.min((ts - startTime)/duration, 1);
+        const progress = Math.min((ts - startTime) / duration, 1);
         el.textContent = Math.floor(progress * (target - start) + start);
-        if (progress < 1) window.requestAnimationFrame(step);
+        if (progress < 1) requestAnimationFrame(step);
       }
-      window.requestAnimationFrame(step);
+      requestAnimationFrame(step);
     }
-    // start when stats are visible
-    const statsObserved = new IntersectionObserver((entries, obs) => {
+    const statsObserver = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting){
-          entry.target.querySelectorAll('.num').forEach(n => animateCounter(n, parseInt(n.dataset.target,10) || 0));
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.num').forEach(n => animateCounter(n, Number(n.dataset.target) || 0));
           obs.disconnect();
         }
       });
-    }, {threshold:0.35});
+    }, {threshold: 0.35});
     const statsEl = document.querySelector('.stats');
-    if (statsEl) statsObserved.observe(statsEl);
+    if (statsEl) statsObserver.observe(statsEl);
 
-    /* --------- Testimonials (simple slider) --------- */
+    /* Testimonials slider */
     const tests = Array.from(document.querySelectorAll('#testimonialWrap .testimonial'));
-    let idx = 0;
-    const showTest = i => {
-      tests.forEach((t, j) => t.classList.toggle('active', j===i));
-    };
-    document.getElementById('nextTest').addEventListener('click', () => { idx = (idx+1) % tests.length; showTest(idx); });
-    document.getElementById('prevTest').addEventListener('click', () => { idx = (idx-1 + tests.length) % tests.length; showTest(idx); });
-    // auto-rotate
-    setInterval(()=> { idx = (idx+1) % tests.length; showTest(idx); }, 7000);
+    let tIdx = 0;
+    const showTest = i => tests.forEach((t, j) => t.classList.toggle('active', j === i));
+    document.getElementById('nextTest').addEventListener('click', () => { tIdx = (tIdx + 1) % tests.length; showTest(tIdx); });
+    document.getElementById('prevTest').addEventListener('click', () => { tIdx = (tIdx - 1 + tests.length) % tests.length; showTest(tIdx); });
+    setInterval(() => { tIdx = (tIdx + 1) % tests.length; showTest(tIdx); }, 7000);
 
-    /* --------- Gallery lightbox --------- */
-    const gallery = document.getElementById('gallery');
-    const lightbox = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
+    /* Gallery lightbox */
+    const gallery = document.getElementById('gallery'), lightbox = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg');
     gallery && gallery.addEventListener('click', e => {
-      const img = e.target.closest('img');
-      if (!img) return;
-      const full = img.dataset.full || img.src;
-      lbImg.src = full;
-      lbImg.alt = img.alt || '';
-      lightbox.style.display = 'grid';
-      lightbox.setAttribute('aria-hidden', 'false');
+      const img = e.target.closest('img'); if (!img) return;
+      lbImg.src = img.dataset.full || img.src; lbImg.alt = img.alt || '';
+      lightbox.style.display = 'grid'; lightbox.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
     });
-    document.getElementById('lbClose').addEventListener('click', () => {
-      lightbox.style.display = 'none';
-      lightbox.setAttribute('aria-hidden','true');
-      lbImg.src = '';
-    });
-    // close on ESC or background click
-    window.addEventListener('keydown', e => { if (e.key === 'Escape') { lightbox.style.display='none'; }});
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display='none'; });
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    window.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    function closeLightbox(){ lightbox.style.display='none'; lightbox.setAttribute('aria-hidden','true'); lbImg.src=''; document.body.style.overflow=''; }
 
-    /* --------- Accessibility: focus outlines for keyboard users --------- */
-    document.body.addEventListener('keydown', (e) => {
-      if (e.key === 'Tab') document.documentElement.classList.add('show-focus');
-    });
+    /* Accessibility: keyboard focus outlines for keyboard users */
+    document.body.addEventListener('keydown', (e) => { if (e.key === 'Tab') document.documentElement.classList.add('show-focus'); });
 
-    /* --------- Performance note: no external animation libs required --------- */
+    /* GSAP hero reveal (subtle) */
+    gsap.from(".hero-title", {opacity:0, y:20, duration:1.1, ease:"power2.out"});
+    gsap.from(".hero-lead", {opacity:0, y:12, duration:1, delay:0.15, ease:"power2.out"});
+
+    /* Improve touch performance */
+    document.addEventListener('touchmove', () => {}, {passive: true});
   </script>
 </body>
 </html>
