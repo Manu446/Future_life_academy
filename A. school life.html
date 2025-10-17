@@ -6,12 +6,12 @@
   <title>School Life — Future Life Academy</title>
   <link rel="icon" href="pics/logo.jpg" />
 
-  <!-- Fonts & icons -->
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
   <style>
-    :root{
+    :root {
       --primary: #32cd32;
       --deep: #006400;
       --bg: #f9f9fb;
@@ -19,112 +19,218 @@
       --muted: #6b7280;
       --card-shadow: 0 10px 30px rgba(2,6,23,0.08);
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      color:#12202b;
-      background:var(--bg);
-      -webkit-font-smoothing:antialiased;
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg);
+      color: #12202b;
+      overflow-x: hidden;
     }
-    a{color:var(--deep); text-decoration:none;}
+    a { text-decoration: none; color: var(--deep); }
 
     /* NAVBAR */
-    .navbar{
-      position:fixed;top:0;left:0;right:0;z-index:1100;
-      display:flex;align-items:center;justify-content:center;
-      padding:18px 1rem; backdrop-filter: blur(6px);
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1100;
+      display: flex; justify-content: center;
+      padding: 18px 1rem;
+      backdrop-filter: blur(6px);
       background: linear-gradient(180deg, rgba(11,11,11,0.30), rgba(11,11,11,0.28));
       transition: all .28s ease;
     }
-    .navbar.solid{ background: var(--deep); box-shadow:0 8px 28px rgba(2,6,23,0.28); }
-    .nav-inner{ width:1200px; max-width:94%; display:flex; align-items:center; gap:1rem; }
-    .brand{ display:flex; align-items:center; gap:.6rem; color:#fff; text-decoration:none; }
-    .brand img{ width:46px; height:46px; border-radius:10px; object-fit:cover; border:2px solid #fff; }
-    .brand .title{ font-weight:700; color:#fff; letter-spacing:.2px; }
-    .nav-links{ margin-left:auto; display:flex; gap:.35rem; align-items:center; }
-    .nav-links a{ color:rgba(255,255,255,0.95); padding:.45rem .9rem; border-radius:8px; font-weight:600; font-size:.94rem; }
-    .nav-links a:hover{ color:var(--primary); transform:translateY(-3px); }
+    .navbar.solid { background: var(--deep); box-shadow: 0 8px 28px rgba(2,6,23,0.28); }
 
-    /* HERO (parallax-like) */
-    .hero{
-      height:92vh; min-height:520px; position:relative; display:grid; place-items:center; text-align:center; color:#fff;
+    .nav-inner {
+      width: 1200px; max-width: 94%;
+      display: flex; align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex; align-items: center; gap: .6rem; color: #fff;
+    }
+    .brand img {
+      width: 46px; height: 46px; border-radius: 10px; object-fit: cover;
+      border: 2px solid #fff;
+    }
+    .brand .title { font-weight: 700; color: #fff; letter-spacing: .2px; }
+
+    .nav-links {
+      display: flex; gap: .4rem; align-items: center;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.95);
+      padding: .45rem .9rem; border-radius: 8px; font-weight: 600; font-size: .94rem;
+      transition: 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--primary); transform: translateY(-3px); }
+
+    /* Hamburger for mobile */
+    .nav-toggle {
+      display: none; background: none; border: none; color: #fff;
+      font-size: 1.6rem; cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; background: var(--deep);
+        text-align: center; overflow: hidden;
+        max-height: 0; transition: max-height .4s ease, padding .3s ease;
+        border-bottom-left-radius: 14px; border-bottom-right-radius: 14px;
+      }
+      .nav-links a {
+        display: block; padding: 1rem; color: #fff;
+        border-top: 1px solid rgba(255,255,255,0.1);
+      }
+      .nav-links.show { max-height: 400px; padding: .5rem 0; }
+      .nav-links a:hover {
+        background: var(--primary); color: #062014; transform: none;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      height: 92vh; min-height: 520px;
+      position: relative; display: grid; place-items: center;
+      text-align: center; color: #fff;
       background: url('pics/class.JPG') center/cover no-repeat fixed;
     }
-    .hero::before{
-      content:""; position:absolute; inset:0;
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
       background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6));
     }
-    .floating-logo{
-      position:absolute; top:110px; left:50%; transform:translateX(-50%); z-index:1200;
-      width:110px; height:110px; background:#fff; border-radius:50%; display:grid; place-items:center;
-      border:3px solid var(--primary); box-shadow:0 10px 40px rgba(50,205,50,0.12);
+    .floating-logo {
+      position: absolute; top: 110px; left: 50%; transform: translateX(-50%);
+      z-index: 1200; width: 110px; height: 110px;
+      background: #fff; border-radius: 50%;
+      display: grid; place-items: center;
+      border: 3px solid var(--primary);
+      box-shadow: 0 10px 40px rgba(50,205,50,0.12);
     }
-    .floating-logo img{ width:86px; height:86px; border-radius:50%; object-fit:cover; }
+    .floating-logo img { width: 86px; height: 86px; border-radius: 50%; object-fit: cover; }
 
-    .hero-inner{ position:relative; z-index:1100; max-width:980px; padding:1rem 1.2rem; transform:translateY(24px); }
-    .hero-eyebrow{ display:inline-block; background: rgba(255,255,255,0.06); padding:.3rem .6rem; border-radius:999px; color:#dfffd8; font-weight:600; letter-spacing:.6px; margin-bottom:.6rem; }
-    .hero h1{ font-size: clamp(1.9rem,4.2vw,3.2rem); margin:0 0 .6rem; line-height:1.02; font-weight:800; text-shadow:0 20px 40px rgba(0,0,0,0.45); }
-    .hero p{ color:#e6f8ec; max-width:760px; margin:0 auto 1.2rem; font-size:1.05rem; }
+    .hero-inner { position: relative; z-index: 1100; max-width: 980px; padding: 1.2rem; }
+    .hero-eyebrow { background: rgba(255,255,255,0.08); padding: .3rem .6rem; border-radius: 999px; display: inline-block; font-weight: 600; margin-bottom: .6rem; color: #dfffd8; }
+    .hero h1 { font-size: clamp(1.8rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: .6rem; }
+    .hero p { color: #e6f8ec; max-width: 760px; margin: 0 auto 1.2rem; font-size: 1.05rem; }
 
-    .hero-ctas{ display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; margin-top:.6rem; }
-    .btn-primary{
-      background:var(--primary); color:#062014; padding:.6rem 1.05rem; border-radius:999px; font-weight:700; border:none; cursor:pointer;
-      box-shadow:0 10px 30px rgba(50,205,50,0.12);
+    .hero-ctas { display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem; }
+    .btn-primary {
+      background: var(--primary); color: #062014; padding: .6rem 1.05rem;
+      border-radius: 999px; font-weight: 700; border: none;
+      box-shadow: 0 10px 30px rgba(50,205,50,0.12); cursor: pointer;
     }
-    .btn-outline{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.12); padding:.55rem 1rem; border-radius:999px; }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.2);
+      background: transparent; color: #fff;
+      padding: .6rem 1.05rem; border-radius: 999px; font-weight: 600;
+    }
 
-    /* Main card holder overlapping hero */
-    main{ max-width:1200px; margin:-4.5rem auto 3rem; padding:2.2rem; background:#fff; border-radius:16px; box-shadow:var(--card-shadow); position:relative; z-index:20; }
+    /* MAIN CARD */
+    main {
+      max-width: 1200px;
+      margin: -4.5rem auto 3rem;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      padding: 2.2rem;
+      position: relative;
+      z-index: 20;
+    }
 
-    /* About */
-    .split{ display:grid; gap:1.2rem; grid-template-columns:1fr; align-items:center; }
-    @media(min-width:900px){ .split{ grid-template-columns: 1fr .9fr; gap:2rem; } }
-    .about-icons{ display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1rem; }
-    .icon-pill{ background:linear-gradient(180deg,#fff,#f7fff7); border-radius:12px; padding:.8rem 1rem; display:flex; gap:.8rem; align-items:center; box-shadow:0 6px 18px rgba(2,6,23,0.04); }
-    .icon-pill i{ color:var(--primary); font-size:1.4rem; }
+    /* GRID SECTIONS */
+    .split {
+      display: grid; gap: 1.5rem; grid-template-columns: 1fr;
+    }
+    @media(min-width: 900px) {
+      .split { grid-template-columns: 1fr .9fr; align-items: center; gap: 2rem; }
+    }
 
-    /* Activities grid */
-    .activities{ display:grid; gap:1rem; grid-template-columns:repeat(1,1fr); margin-top:1.25rem; }
-    @media(min-width:720px){ .activities{ grid-template-columns:repeat(3,1fr); } }
-    .card-activity{ background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(2,6,23,0.06); transition:transform .35s, box-shadow .35s; }
-    .card-activity:hover{ transform:translateY(-10px); box-shadow:0 18px 40px rgba(2,6,23,0.12); }
-    .card-activity img{ width:100%; height:220px; object-fit:cover; display:block; }
-    .card-activity .body{ padding:1rem 1rem 1.25rem; text-align:center; }
-    .card-activity h5{ margin:.5rem 0 .4rem; color:var(--deep); }
-    .card-activity p{ color:var(--muted); font-size:.95rem; margin:0 0 .9rem; }
+    .activities { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media(min-width:720px) {
+      .activities { grid-template-columns: repeat(3, 1fr); }
+    }
 
-    /* Gallery */
-    .gallery{ display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; margin-top:1rem; }
-    @media(max-width:800px){ .gallery{ grid-template-columns:repeat(2,1fr); } }
-    .gallery img{ width:100%; height:140px; object-fit:cover; border-radius:10px; cursor:pointer; transition:transform .25s; }
-    .gallery img:hover{ transform:scale(1.03); }
+    .card-activity {
+      background: #fff; border-radius: 14px;
+      overflow: hidden; box-shadow: var(--card-shadow);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .card-activity:hover { transform: translateY(-10px); box-shadow: 0 18px 40px rgba(2,6,23,0.12); }
+    .card-activity img { width: 100%; height: 220px; object-fit: cover; }
+    .card-activity .body { padding: 1rem; text-align: center; }
 
-    /* Testimonials */
-    .testimonials{ margin-top:1.25rem; background:linear-gradient(180deg,#fff,#f7fff7); padding:1.25rem; border-radius:12px; box-shadow:0 10px 30px rgba(2,6,23,0.04); }
-    .testimonial{ display:flex; gap:1rem; align-items:center; }
-    .testimonial img{ width:70px; height:70px; border-radius:50%; object-fit:cover; box-shadow:0 10px 30px rgba(2,6,23,0.06); }
-    .quote{ font-style:italic; color:#103; margin:0; }
+    /* GALLERY */
+    .gallery { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); }
+    .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 10px; cursor: pointer; transition: transform .25s; }
+    .gallery img:hover { transform: scale(1.03); }
 
     /* CTA */
-    .cta{ background:linear-gradient(135deg,var(--deep),var(--primary)); color:#fff; padding:2.4rem; text-align:center; border-radius:12px; margin-top:2rem; }
-    .cta h3{ margin:0 0 .6rem; font-size:1.3rem; }
+    .cta {
+      background: linear-gradient(135deg,var(--deep),var(--primary));
+      color: #fff; padding: 2rem; text-align: center; border-radius: 12px; margin-top: 2rem;
+    }
 
-    /* Footer */
-    footer{ margin-top:2rem; padding:2rem 1rem; text-align:center; background:var(--dark); color:#ddd; }
-    footer .social a{ color:var(--primary); margin:.4rem; font-size:1.2rem; }
+     /* Responsive modal media */
+    .modal-content {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .modal-body {
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+    .modal-body img,
+    .modal-body video {
+      width: 100%;
+      height: auto;
+      max-height: 60vh;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .modal.fade .modal-dialog {
+      transform: scale(0.9);
+      transition: transform 0.3s ease-out;
+    }
+    .modal.show .modal-dialog {
+      transform: scale(1);
+    }
 
-    /* Floating apply button */
-    .apply-fab{ position:fixed; right:20px; bottom:20px; z-index:1300; width:56px; height:56px; border-radius:50%; background:var(--primary); display:grid; place-items:center; box-shadow:0 12px 30px rgba(50,205,50,0.18); border:none; cursor:pointer; color:#062014; font-size:20px; }
+    @media (max-width: 600px) {
+      .modal-body {
+        padding: 0.8rem;
+      }
+      .modal-body img,
+      .modal-body video {
+        max-height: 50vh;
+      }
+    }
+    /* FOOTER */
+    footer {
+      background: var(--dark); color: #ddd;
+      text-align: center; padding: 2rem 1rem; margin-top: 2rem;
+    }
 
-    /* Lightbox */
-    #lightbox{ position:fixed; inset:0; display:none; place-items:center; background:rgba(2,6,23,0.75); z-index:1400; }
-    #lightbox img{ max-width:92%; max-height:86%; border-radius:10px; }
+    /* Floating FAB */
+    .apply-fab {
+      position: fixed; right: 20px; bottom: 20px; z-index: 1300;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--primary); display: grid; place-items: center;
+      box-shadow: 0 12px 30px rgba(50,205,50,0.18);
+      border: none; color: #062014; font-size: 20px; cursor: pointer;
+    }
 
-    /* small tweaks */
-    @media(max-width:520px){
-      .hero h1{ font-size:1.6rem; margin-top:120px; }
-      .floating-logo{ top:85px; width:86px; height:86px; }
+    /* MOBILE OPTIMIZATIONS */
+    @media(max-width:600px) {
+      .hero h1 { font-size: 1.6rem; margin-top: 130px; }
+      .floating-logo { top: 90px; width: 86px; height: 86px; }
+      main { margin: -3rem auto 2rem; padding: 1.4rem; }
+      .btn-primary, .btn-outline { width: 100%; max-width: 280px; }
     }
   </style>
 </head>
@@ -134,31 +240,34 @@
   <header class="navbar" role="banner" id="siteNav">
     <div class="nav-inner">
       <a class="brand" href="index.html">
-        <img src="pics/logo-removebg.png" alt="Future Life Academy logo" loading="lazy">
+        <img src="pics/logo-removebg.png" alt="Future Life Academy logo">
         <span class="title">Future Life Academy</span>
       </a>
 
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
       <nav class="nav-links" aria-label="Primary">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="academics.html">Academics</a>
-        <a href="admissions.html">Admissions</a>
+        <a href="A. more.html">About</a>
+        <a href="A. academics.html">Academics</a>
+        <a href="A. admissions.html">Admissions</a>
         <a class="active" href="A. school life.html">School Life</a>
+        <a href="A. contacts.html">Contact</a>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero" role="region" aria-label="Campus Life">
-    <div class="floating-logo" aria-hidden="true">
-      <img src="pics/logo.jpg" alt="Future Life Academy logo" loading="lazy">
+  <section class="hero">
+    <div class="floating-logo">
+      <img src="pics/logo.jpg" alt="School logo">
     </div>
-
-    <div class="hero-inner" id="heroInner">
+    <div class="hero-inner">
       <span class="hero-eyebrow">School Life</span>
       <h1>Vibrant Campus — Holistic Growth</h1>
       <p>From playful early years to confident junior scholars — our school life blends values, creativity, and opportunity.</p>
-
       <div class="hero-ctas">
         <button class="btn-primary" onclick="document.getElementById('activities').scrollIntoView({behavior:'smooth'})">Explore Activities</button>
         <a class="btn-outline" href="admissions.html">Apply Now</a>
@@ -255,30 +364,14 @@
       <h3 id="ctaTitle">Join the Future Life Family</h3>
       <p>Start your child’s journey to excellence. Admissions are open for Playgroup → Junior School (Grade 9).</p>
       <div style="margin-top:12px">
-        <a class="btn-primary" href="admissions.html">Apply Now</a>
+        <a class="btn-primary" href="A. admissions.html">Apply Now</a>
         <a class="btn-outline" href="A. contacts.html" style="margin-left:10px">Contact Us</a>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer role="contentinfo">
-    <div style="max-width:1100px;margin:0 auto;padding:8px">
-      <div style="display:flex;justify-content:center;gap:1rem;align-items:center;margin-bottom:.6rem">
-        <img src="pics/logo-removebg.png" alt="logo" style="width:38px;height:38px;border-radius:8px;border:2px solid #fff">
-        <strong style="color:#fff">Future Life Academy</strong>
-      </div>
-      <p style="color:#cfe8d2;margin:6px 0">&copy; 2025 Future Life Academy. All Rights Reserved. Designed by Ace446</p>
-      <div class="social" style="margin-top:6px">
-        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      </div>
-    </div>
-  </footer>
-
   <!-- Apply FAB -->
-  <button class="apply-fab" aria-label="Apply now" onclick="location.href='admissions.html'">
+  <button class="apply-fab" aria-label="Apply now" onclick="location.href='A. admissions.html'">
     <i class="fa-solid fa-pen-nib"></i>
   </button>
 
@@ -289,9 +382,9 @@
 
   <!-- Modals (same as earlier) -->
   <div class="modal fade" id="sportsModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-success text-white">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
           <h5 class="modal-title">Sports & Athletics</h5>
           <button class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -332,6 +425,22 @@
       </div>
     </div>
   </div>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div style="max-width:1100px;margin:0 auto;padding:8px">
+      <div style="display:flex;justify-content:center;gap:1rem;align-items:center;margin-bottom:.6rem">
+        <img src="pics/logo-removebg.png" alt="logo" style="width:38px;height:38px;border-radius:8px;border:2px solid #fff">
+        <strong style="color:#fff">Future Life Academy</strong>
+      </div>
+      <p style="color:#cfe8d2;margin:6px 0">&copy; 2025 Future Life Academy. All Rights Reserved. Designed by Ace446</p>
+      <div class="social" style="margin-top:6px">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
