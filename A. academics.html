@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academics | Future Life Academy</title>
+  <link rel="icon" href="pics/logo.jpg" type="image/x-icon" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: rgba(0, 0, 0, 0.4);
+      transition: all 0.4s ease;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+    }
+    .navbar.scrolled {
+      background: #006400;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      color: white !important;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+    }
+    .navbar-brand img {
+      height: 45px;
+      width: 45px;
+      border-radius: 50%;
+      margin-right: 10px;
+      border: 2px solid white;
+    }
+    .navbar-nav .nav-link {
+      color: white !important;
+      margin: 0 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #32cd32 !important;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      height: 90vh;
+      background: linear-gradient(rgba(0, 40, 0, 0.6), rgba(0, 40, 0, 0.6)),
+        url("pics/outgoing.jpg") center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* FLOATING LOGO */
+    .floating-logo {
+      position: absolute;
+      top: 100px; /* pushes below navbar */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1100;
+      background: white;
+      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 25px rgba(0, 128, 0, 0.3);
+      border: 3px solid #32cd32;
+    }
+    .floating-logo img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-top: 10rem;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      color: #eafbe5;
+    }
+
+    /* SECTION HEADINGS */
+    h2.section-title {
+      text-align: center;
+      font-weight: 700;
+      color: #006400;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    h2.section-title::after {
+      content: "";
+      display: block;
+      width: 90px;
+      height: 4px;
+      background-color: #32cd32;
+      margin: 10px auto 0;
+      border-radius: 10px;
+    }
+
+    /* CURRICULUM */
+    .curriculum-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      transition: 0.4s ease;
+      text-align: center;
+    }
+    .curriculum-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0, 100, 0, 0.15);
+    }
+    .curriculum-card h4 {
+      color: #32cd32;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* DOWNLOAD BUTTON */
+    .download-btn {
+      display: inline-block;
+      background: #006400;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      margin-top: 2rem;
+    }
+    .download-btn:hover {
+      background: #32cd32;
+      color: #fff;
+      box-shadow: 0 0 15px #32cd32;
+    }
+
+    /* TEACHERS */
+    .teachers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .teacher-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      transition: 0.3s ease;
+      text-align: center;
+    }
+    .teacher-card:hover {
+      transform: translateY(-5px);
+    }
+    .teacher-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .teacher-card h5 {
+      color: #006400;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    .teacher-card p {
+      color: #555;
+      padding: 0 1rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    /* CTA */
+    .cta {
+      background: linear-gradient(135deg, #006400, #32cd32);
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+      border-radius: 12px;
+      margin: 4rem 1rem;
+    }
+    .cta h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta a.btn {
+      background: white;
+      color: #006400;
+      border: none;
+      font-weight: 600;
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+    .cta a.btn:hover {
+      background: #004d00;
+      color: white;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark py-3">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="pics/logo.jpg" alt="Future Life Academy Logo">
+        Future Life Academy
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="academics.html" class="nav-link active text-success">Academics</a></li>
+          <li class="nav-item"><a href="admissions.html" class="nav-link">Admissions</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- FLOATING LOGO ABOVE HERO -->
+  <div class="floating-logo">
+    <img src="pics/logo.jpg" alt="Future Life Academy Logo">
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Academics at Future Life Academy</h1>
+    <p>Empowering learners through holistic, CBC-driven education.</p>
+  </section>
+
+  <!-- STRUCTURE -->
+  <section class="container my-5">
+    <h2 class="section-title">Our Academic Structure</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="curriculum-card">
+          <h4>Playgroup – PP2</h4>
+          <p>Fun, creativity, and curiosity guide early learning.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="curriculum-card">
+          <h4>Lower Primary (Grades 1–3)</h4>
+          <p>Building literacy, numeracy, and strong moral foundations.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="curriculum-card">
+          <h4>Upper Primary (Grades 4–6)</h4>
+          <p>Developing reasoning, collaboration, and confidence.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="curriculum-card">
+          <h4>Junior School (Grades 7–9)</h4>
+          <p>Preparing learners for high school and the future world of work.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <a href="docs/FutureLife_CurriculumGuide.pdf" class="download-btn" target="_blank">📘 Download Curriculum Guide</a>
+    </div>
+  </section>
+
+  <!-- TEACHERS -->
+  <section style="background-color: #f0f5f1; padding: 4rem 1rem;">
+    <div class="container">
+      <h2 class="section-title">Meet Our Teachers</h2>
+      <div class="teachers">
+        <div class="teacher-card">
+          <img src="pics/teacher1.jpg" alt="Teacher" />
+          <h5>Mrs. Grace Mwangi</h5>
+          <p>Head of Early Years | 10+ years of nurturing young minds with patience and creativity.</p>
+        </div>
+        <div class="teacher-card">
+          <img src="pics/teacher2.jpg" alt="Teacher" />
+          <h5>Mr. David Omondi</h5>
+          <p>STEM Coordinator | Inspiring curiosity through hands-on science and innovation.</p>
+        </div>
+        <div class="teacher-card">
+          <img src="pics/teacher3.jpg" alt="Teacher" />
+          <h5>Ms. Lucy Wambua</h5>
+          <p>Languages Instructor | Cultivating communication and confidence in learners.</p>
+        </div>
+        <div class="teacher-card">
+          <img src="pics/teacher4.jpg" alt="Teacher" />
+          <h5>Mr. Peter Kimani</h5>
+          <p>Junior School Lead | Guiding learners to become problem-solvers and leaders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h3>Empower Your Child’s Academic Journey</h3>
+    <p>Join Future Life Academy — where learning meets purpose, passion, and excellence.</p>
+    <a href="admissions.html" class="btn">Apply for Admission</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Future Life Academy. All Rights Reserved.</p>
+    <p>Designed by Ace446</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".navbar");
+      navbar.classList.toggle("scrolled", window.scrollY > 100);
+    });
+  </script>
+</body>
+</html>
